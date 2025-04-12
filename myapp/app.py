@@ -1,3 +1,6 @@
+import sys
+print("PYTHONPATH:", sys.path)
+
 def hello_to_github():
     return "Hello GitHub Actions!"
 

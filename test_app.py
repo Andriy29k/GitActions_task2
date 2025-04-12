@@ -1,4 +1,4 @@
-from myapp.app import add, substraction, multiply, divide, power, equal
+from myapp.app import *
 
 def test_add():
     assert add(11, 3) == 14
