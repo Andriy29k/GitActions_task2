@@ -50,13 +50,15 @@ jobs:
         run: echo "Building application..."
 
       - name: Update README with build badge
+        run: |
+          BADGE="[![Build Status](https://github.com/Andriy29k/GitActions_task2/actions/workflows/test.yml/badge.svg)](https://github.com/Andriy29k/GitActions_task2/actions/workflows/test.yml)"
+          README="README.md"
+      
+          if grep -q "\[!\[Build Status\]" "$README"; then
+            echo "Badge already exists in $README"
+          else
+            echo "Updating $README with badge..."
+            echo "$BADGE" >> "$README"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          BADGE="[![Build Status](https://github.com/${{ github.repository }}/actions/workflows/test.yml/badge.svg)](https://github.com/${{ github.repository }}/actions/workflows/test.yml)"
-          README="README.md"
-          if grep -q "\[!\[Build Status\]" $README; then
-            echo "Badge already exists in README.md"
-          else
-            echo "Updating README.md with badge..."
-            echo "$BADGE" >> $README
